@@ -1,6 +1,12 @@
 import {defineQuery} from "next-sanity";
 
 /**
+ * Array members additionally carry their Sanity `_key` as `key`. That is the
+ * only stable identity an array item has: two entries can legitimately point
+ * at the same asset (Sanity dedupes byte-identical uploads to one asset), so
+ * keying React off the URL collides. `_key` is also what Visual Editing
+ * overlays bind to.
+ *
  * Every image is projected into a flat, render-ready shape: a CDN url plus
  * the intrinsic dimensions and LQIP that Sanity already stores as asset
  * metadata. This is what replaced the generated IMAGE_DIMENSIONS manifest —
@@ -32,7 +38,7 @@ const PROJECT_FIELDS = /* groq */ `
   "solutionImage": solutionImage${IMAGE_FRAGMENT},
   resultHeadline,
   resultDescription,
-  "additionalImages": additionalImages[]${IMAGE_FRAGMENT}
+  "additionalImages": additionalImages[]{"key": _key, ...${IMAGE_FRAGMENT}}
 `;
 
 export const PROJECTS_QUERY = defineQuery(`

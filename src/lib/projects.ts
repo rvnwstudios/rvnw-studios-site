@@ -35,6 +35,15 @@ export interface ProjectImageSource {
   alt: string | null;
 }
 
+/**
+ * A gallery image. Carries the array item's `_key`, which is its only stable
+ * identity — two entries may reference the same asset, so the URL is not
+ * unique within a document.
+ */
+export interface GalleryImage extends ProjectImageSource {
+  key: string;
+}
+
 export interface Project {
   _id: string;
   title: string;
@@ -73,7 +82,7 @@ export interface Project {
    * line), so the template renders this conditionally off `.length` and
    * never assumes a fixed count. Coerced to an array — empty, never null.
    */
-  additionalImages: ProjectImageSource[];
+  additionalImages: GalleryImage[];
 }
 
 // ISR window. Content changes land within 30s without a redeploy.
@@ -138,8 +147,11 @@ function toProject(raw: RawProject): Project | null {
     resultHeadline: raw.resultHeadline,
     resultDescription: raw.resultDescription,
     additionalImages: (raw.additionalImages ?? [])
-      .map(toImage)
-      .filter((img): img is ProjectImageSource => img !== null),
+      .map((entry) => {
+        const img = toImage(entry);
+        return img && entry.key ? {...img, key: entry.key} : null;
+      })
+      .filter((img): img is GalleryImage => img !== null),
   };
 }
 

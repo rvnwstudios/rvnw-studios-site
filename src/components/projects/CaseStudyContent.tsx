@@ -233,7 +233,7 @@ export function CaseStudyContent({ project }: { project: Project }) {
             className="grid grid-cols-1 items-start gap-6 sm:grid-cols-2"
           >
             {project.additionalImages.map((image, i) => (
-              <motion.div key={image.url} variants={reveal}>
+              <motion.div key={image.key} variants={reveal}>
                 <ClickableImage
                   image={image}
                   alt={`${project.title} — image ${i + 1} of ${project.additionalImages.length}`}

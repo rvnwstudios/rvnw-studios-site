@@ -238,7 +238,7 @@ export type AllSanitySchemaTypes =
 
 // Source: ../rvnw-studios-site/src/sanity/queries.ts
 // Variable: PROJECTS_QUERY
-// Query: *[_type == "caseStudy" && defined(slug.current)] | order(displayOrder asc) {  _id,  title,  "slug": slug.current,  disciplines,  metaLocation,  siteUrl,  displayOrder,  "vertical": vertical->{"slug": slug.current, title},  heroHeadline,  heroDescription,  "heroImage": heroImage{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt},  solutionHeadline,  solutionDescription,  "solutionImage": solutionImage{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt},  resultHeadline,  resultDescription,  "additionalImages": additionalImages[]{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt}}
+// Query: *[_type == "caseStudy" && defined(slug.current)] | order(displayOrder asc) {  _id,  title,  "slug": slug.current,  disciplines,  metaLocation,  siteUrl,  displayOrder,  "vertical": vertical->{"slug": slug.current, title},  heroHeadline,  heroDescription,  "heroImage": heroImage{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt},  solutionHeadline,  solutionDescription,  "solutionImage": solutionImage{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt},  resultHeadline,  resultDescription,  "additionalImages": additionalImages[]{"key": _key, ...{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt}}}
 export type PROJECTS_QUERY_RESULT = Array<{
   _id: string;
   title: string | null;
@@ -272,6 +272,7 @@ export type PROJECTS_QUERY_RESULT = Array<{
   resultHeadline: string | null;
   resultDescription: string | null;
   additionalImages: Array<{
+    key: string;
     url: string | null;
     width: number | null;
     height: number | null;
@@ -282,7 +283,7 @@ export type PROJECTS_QUERY_RESULT = Array<{
 
 // Source: ../rvnw-studios-site/src/sanity/queries.ts
 // Variable: PROJECT_BY_SLUG_QUERY
-// Query: *[_type == "caseStudy" && slug.current == $slug][0] {  _id,  title,  "slug": slug.current,  disciplines,  metaLocation,  siteUrl,  displayOrder,  "vertical": vertical->{"slug": slug.current, title},  heroHeadline,  heroDescription,  "heroImage": heroImage{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt},  solutionHeadline,  solutionDescription,  "solutionImage": solutionImage{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt},  resultHeadline,  resultDescription,  "additionalImages": additionalImages[]{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt}}
+// Query: *[_type == "caseStudy" && slug.current == $slug][0] {  _id,  title,  "slug": slug.current,  disciplines,  metaLocation,  siteUrl,  displayOrder,  "vertical": vertical->{"slug": slug.current, title},  heroHeadline,  heroDescription,  "heroImage": heroImage{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt},  solutionHeadline,  solutionDescription,  "solutionImage": solutionImage{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt},  resultHeadline,  resultDescription,  "additionalImages": additionalImages[]{"key": _key, ...{  "url": asset->url,  "width": asset->metadata.dimensions.width,  "height": asset->metadata.dimensions.height,  "lqip": asset->metadata.lqip,  alt}}}
 export type PROJECT_BY_SLUG_QUERY_RESULT = {
   _id: string;
   title: string | null;
@@ -316,6 +317,7 @@ export type PROJECT_BY_SLUG_QUERY_RESULT = {
   resultHeadline: string | null;
   resultDescription: string | null;
   additionalImages: Array<{
+    key: string;
     url: string | null;
     width: number | null;
     height: number | null;
@@ -333,8 +335,8 @@ export type PROJECT_SLUGS_QUERY_RESULT = Array<string | null>;
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  *[_type == "caseStudy" && defined(slug.current)] | order(displayOrder asc) {\n  _id,\n  title,\n  "slug": slug.current,\n  disciplines,\n  metaLocation,\n  siteUrl,\n  displayOrder,\n  "vertical": vertical->{"slug": slug.current, title},\n  heroHeadline,\n  heroDescription,\n  "heroImage": heroImage{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n},\n  solutionHeadline,\n  solutionDescription,\n  "solutionImage": solutionImage{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n},\n  resultHeadline,\n  resultDescription,\n  "additionalImages": additionalImages[]{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n}\n}\n': PROJECTS_QUERY_RESULT;
-    '\n  *[_type == "caseStudy" && slug.current == $slug][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  disciplines,\n  metaLocation,\n  siteUrl,\n  displayOrder,\n  "vertical": vertical->{"slug": slug.current, title},\n  heroHeadline,\n  heroDescription,\n  "heroImage": heroImage{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n},\n  solutionHeadline,\n  solutionDescription,\n  "solutionImage": solutionImage{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n},\n  resultHeadline,\n  resultDescription,\n  "additionalImages": additionalImages[]{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n}\n}\n': PROJECT_BY_SLUG_QUERY_RESULT;
+    '\n  *[_type == "caseStudy" && defined(slug.current)] | order(displayOrder asc) {\n  _id,\n  title,\n  "slug": slug.current,\n  disciplines,\n  metaLocation,\n  siteUrl,\n  displayOrder,\n  "vertical": vertical->{"slug": slug.current, title},\n  heroHeadline,\n  heroDescription,\n  "heroImage": heroImage{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n},\n  solutionHeadline,\n  solutionDescription,\n  "solutionImage": solutionImage{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n},\n  resultHeadline,\n  resultDescription,\n  "additionalImages": additionalImages[]{"key": _key, ...{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n}}\n}\n': PROJECTS_QUERY_RESULT;
+    '\n  *[_type == "caseStudy" && slug.current == $slug][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  disciplines,\n  metaLocation,\n  siteUrl,\n  displayOrder,\n  "vertical": vertical->{"slug": slug.current, title},\n  heroHeadline,\n  heroDescription,\n  "heroImage": heroImage{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n},\n  solutionHeadline,\n  solutionDescription,\n  "solutionImage": solutionImage{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n},\n  resultHeadline,\n  resultDescription,\n  "additionalImages": additionalImages[]{"key": _key, ...{\n  "url": asset->url,\n  "width": asset->metadata.dimensions.width,\n  "height": asset->metadata.dimensions.height,\n  "lqip": asset->metadata.lqip,\n  alt\n}}\n}\n': PROJECT_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "caseStudy" && defined(slug.current)].slug.current\n': PROJECT_SLUGS_QUERY_RESULT;
   }
 }

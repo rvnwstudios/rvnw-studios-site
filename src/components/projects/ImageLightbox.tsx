@@ -108,7 +108,7 @@ export function ImageLightbox({
         className="flex max-h-full max-w-full flex-col items-center"
       >
         <Image
-          key={current.image.url}
+          key={index}
           src={current.image.url}
           alt={current.alt}
           width={current.image.width}
