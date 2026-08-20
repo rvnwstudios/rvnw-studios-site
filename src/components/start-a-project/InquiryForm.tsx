@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { SubmitButton } from "../motion/SubmitButton";
 import { BUDGET_RANGES, DISCIPLINES, TIMELINES, VERTICALS } from "@/lib/inquiry";
 
@@ -54,6 +54,8 @@ export function InquiryForm() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const containerRef = useRef<HTMLFormElement>(null);
+  const [minHeight, setMinHeight] = useState<number>();
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
@@ -102,6 +104,7 @@ export function InquiryForm() {
         return;
       }
 
+      setMinHeight(containerRef.current?.offsetHeight);
       setStatus("success");
     } catch {
       setSubmitError("Something went wrong sending that. Try again, or email hello@rvnwstudios.com directly.");
@@ -111,7 +114,7 @@ export function InquiryForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-[#2A2A28] bg-[#0A0A0A] p-8">
+      <div style={{ minHeight }} className="border border-[#2A2A28] bg-[#0A0A0A] p-8">
         <h3 className="mb-3 font-display text-2xl font-semibold text-paper">Got It.</h3>
         <p className="font-body text-base leading-relaxed text-grid">
           Check your inbox for a confirmation. Expect a reply within two business days.
@@ -121,7 +124,7 @@ export function InquiryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
+    <form ref={containerRef} onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
       <div>
         <label htmlFor="name" className={labelClass}>
           Name
