@@ -33,6 +33,24 @@ export default function TermsOfServicePage() {
         </p>
       </LegalSection>
 
+      <LegalSection heading="Payment Terms">
+        <p>
+          Unless a signed project agreement says otherwise, engagements are billed in three
+          installments tied to project milestones:
+        </p>
+        <ul className="list-disc space-y-2 pl-5">
+          <li>50% due at project kickoff, before work begins</li>
+          <li>30% due upon approval of the design phase</li>
+          <li>20% due upon approval of development/deployment, prior to launch</li>
+        </ul>
+        <p>
+          Each installment is invoiced separately and is due within 14 days of the invoice date (net
+          14). Invoices unpaid after 14 days accrue a late fee of 5% of the outstanding balance for
+          every 7 days the payment remains overdue. We may pause project work, including design and
+          development, until overdue invoices are paid in full.
+        </p>
+      </LegalSection>
+
       <LegalSection heading="Case Studies and Client Work">
         <p>
           Case studies and work samples shown on the Site are shared with client permission where
