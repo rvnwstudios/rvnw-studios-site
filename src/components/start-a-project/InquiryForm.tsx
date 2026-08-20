@@ -116,9 +116,12 @@ export function InquiryForm() {
 
   if (status === "success") {
     return (
-      <div style={{ minHeight }} className="border border-[#2A2A28] bg-[#0A0A0A] p-8">
+      <div
+        style={{ minHeight }}
+        className="flex flex-col items-center justify-center border border-[#2A2A28] bg-[#0A0A0A] p-8 text-center"
+      >
         <h3 className="mb-3 font-display text-2xl font-semibold text-paper">Got It.</h3>
-        <p className="font-body text-base leading-relaxed text-grid">
+        <p className="max-w-[360px] font-body text-base leading-relaxed text-grid">
           Check your inbox for a confirmation. Expect a reply within two business days.
         </p>
       </div>
