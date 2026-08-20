@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
+import { SectionHeader } from "./SectionHeader";
 
 const services = [
   {
@@ -72,14 +73,7 @@ export function ServicesSection() {
 
   return (
     <section id="services" className="bg-ink px-6 py-16 sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
-      <div className="mb-10 flex flex-col gap-3 border-b-2 border-paper pb-6 sm:mb-20 sm:flex-row sm:items-end sm:justify-between sm:gap-0 sm:pb-8">
-        <span className="font-mono text-xs tracking-[0.15em] text-grid uppercase">
-          01 — Services
-        </span>
-        <h2 className="font-display text-[clamp(32px,9vw,72px)] leading-none font-semibold text-paper">
-          What We Do
-        </h2>
-      </div>
+      <SectionHeader eyebrow="01 — Services" heading="What We Do" className="mb-10 sm:mb-20" />
       <motion.div
         className="grid grid-cols-1 border-t border-l border-[#1c1c1c] sm:grid-cols-2 lg:grid-cols-3"
         initial="hidden"

@@ -58,7 +58,7 @@ export function ProcessSection() {
       id="process"
       className="flex flex-col bg-hero px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 xl:min-h-screen xl:px-20 xl:py-20"
     >
-      <div className="flex flex-col gap-2 border-b border-[rgba(10,10,10,0.2)] pb-5 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:pb-7">
+      <div className="flex flex-col gap-2 border-b border-[rgba(10,10,10,0.2)] pb-5 sm:flex-row-reverse sm:items-center sm:justify-between sm:gap-0 sm:pb-7">
         <span className="font-mono text-xs tracking-[0.15em] text-[rgba(10,10,10,0.75)] uppercase">
           03 — Process
         </span>

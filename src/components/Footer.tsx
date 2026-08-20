@@ -10,7 +10,7 @@ export async function Footer({ showAvailableBadge = true }: { showAvailableBadge
 
   return (
     <footer className="border-t border-[#1c1c1c] bg-ink px-6 pt-16 pb-10 sm:px-8 md:px-12 md:pt-20 lg:px-20">
-      <div className="mb-12 grid grid-cols-1 items-start gap-10 sm:grid-cols-[2fr_1fr_1fr_1fr] sm:gap-20 md:mb-20">
+      <div className="mb-10 grid grid-cols-1 items-start gap-8 sm:mb-12 sm:grid-cols-[2fr_1fr_1fr_1fr] sm:gap-20 md:mb-20">
         <div>
           <Link href="/" className="mb-5 flex items-center gap-3">
             <RMark size={24} />
@@ -85,7 +85,7 @@ export async function Footer({ showAvailableBadge = true }: { showAvailableBadge
       </div>
 
       {showAvailableBadge && (
-        <div className="mb-10 flex justify-center">
+        <div className="mb-8 flex justify-center sm:mb-10">
           <div className="inline-flex items-center gap-2.5 rounded-full border border-[#2a2a28] px-5 py-2.5">
             <span className="available-dot" />
             <span className="font-mono text-[11px] tracking-[0.12em] text-grid uppercase">
@@ -96,23 +96,32 @@ export async function Footer({ showAvailableBadge = true }: { showAvailableBadge
       )}
 
       <div className="flex flex-col gap-4 border-t border-[#1c1c1c] pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
-        <span className="font-mono text-[11px] tracking-[0.12em] text-grid uppercase">
-          © 2026 RVNW Studios
-        </span>
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
+        <div className="flex items-center justify-between sm:contents">
+          <span className="font-mono text-[11px] tracking-[0.12em] text-grid uppercase">
+            © 2026 RVNW Studios
+          </span>
+          <span className="font-mono text-[11px] tracking-[0.12em] text-grid uppercase sm:hidden">
+            All rights reserved
+          </span>
+        </div>
+
+        {/* Two links, edge to edge on mobile (justify-between) instead of
+            stacking — at sm+ they sit tight together on the right, matching
+            the original desktop grouping, via gap instead of spread. */}
+        <div className="flex items-center justify-between gap-6 sm:justify-start">
           <Link
             href="/privacy-policy"
-            className="footer-link font-mono text-[11px] tracking-[0.12em] uppercase"
+            className="footer-link inline-block py-1 font-mono text-[11px] tracking-[0.12em] uppercase"
           >
             Privacy Policy
           </Link>
           <Link
             href="/terms-of-service"
-            className="footer-link font-mono text-[11px] tracking-[0.12em] uppercase"
+            className="footer-link inline-block py-1 font-mono text-[11px] tracking-[0.12em] uppercase"
           >
             Terms of Service
           </Link>
-          <span className="font-mono text-[11px] tracking-[0.12em] text-grid uppercase">
+          <span className="hidden font-mono text-[11px] tracking-[0.12em] text-grid uppercase sm:inline">
             All rights reserved
           </span>
         </div>

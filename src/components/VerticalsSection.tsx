@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
+import { SectionHeader } from "./SectionHeader";
 
 const verticals = [
   { index: "01", title: "DTC", meta: "Cannabis / CBD / Health & Wellness" },
@@ -44,14 +45,7 @@ export function VerticalsSection() {
 
   return (
     <section className="bg-ink px-6 py-16 sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
-      <div className="flex flex-col gap-3 border-b-2 border-paper pb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-0 sm:pb-8">
-        <span className="font-mono text-xs tracking-[0.15em] text-grid uppercase">
-          02 — Verticals
-        </span>
-        <h2 className="font-display text-[clamp(32px,9vw,72px)] leading-none font-semibold text-paper">
-          Who We Work With
-        </h2>
-      </div>
+      <SectionHeader eyebrow="02 — Verticals" heading="Who We Work With" />
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={container}>
         {verticals.map((v) => (
           <motion.div

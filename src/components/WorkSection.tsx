@@ -6,6 +6,7 @@ import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
 import type { Project } from "@/lib/projects";
 import { CtaButton } from "./motion/CtaButton";
 import { ProjectCard } from "./projects/ProjectCard";
+import { SectionHeader } from "./SectionHeader";
 
 export function WorkSection({ projects }: { projects: Project[] }) {
   // Derived from list order rather than a hardcoded 3×2 row structure. The
@@ -33,14 +34,7 @@ export function WorkSection({ projects }: { projects: Project[] }) {
 
   return (
     <section id="work" className="bg-ink px-6 py-16 sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
-      <div className="mb-10 flex flex-col gap-3 border-b-2 border-paper pb-6 sm:mb-20 sm:flex-row sm:items-end sm:justify-between sm:gap-0 sm:pb-8">
-        <span className="font-mono text-xs tracking-[0.15em] text-grid uppercase">
-          05 — Our Work
-        </span>
-        <h2 className="font-display text-[clamp(32px,9vw,72px)] leading-none font-semibold text-paper">
-          Selected Work
-        </h2>
-      </div>
+      <SectionHeader eyebrow="05 — Our Work" heading="Selected Work" className="mb-10 sm:mb-20" />
 
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={container}>
         <ProjectCard
