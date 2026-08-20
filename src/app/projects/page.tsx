@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { ProjectsGrid } from "@/components/projects/ProjectsGrid";
+import { getProjects } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "Projects — RVNW Studios",
   description: "Case studies across DTC, e-commerce, startups, hospitality, sports, and service businesses.",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await getProjects();
+
   return (
     <>
       <Nav />
@@ -23,7 +26,7 @@ export default function ProjectsPage() {
             </h1>
           </div>
 
-          <ProjectsGrid />
+          <ProjectsGrid projects={projects} />
         </div>
       </main>
       <Footer />

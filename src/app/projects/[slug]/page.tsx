@@ -5,10 +5,11 @@ import { Footer } from "@/components/Footer";
 import { CaseStudyContent } from "@/components/projects/CaseStudyContent";
 import { ProjectSwitcher } from "@/components/projects/ProjectSwitcher";
 import { CtaSection } from "@/components/CtaSection";
-import { PROJECTS, getProjectBySlug, getProjectNeighbors } from "@/lib/projects";
+import { getProjectBySlug, getProjectNeighbors, getProjectSlugs } from "@/lib/projects";
 
-export function generateStaticParams() {
-  return PROJECTS.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const slugs = await getProjectSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -17,24 +18,24 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
 
   return {
     title: `${project.title} — RVNW Studios`,
-    description: `${project.metaCategory} case study — ${project.title}.`,
+    description: `${project.disciplines.join(" + ")} case study — ${project.title}.`,
   };
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) notFound();
 
   // getProjectNeighbors wraps at both ends, so this is only undefined if
   // getProjectBySlug already succeeded and the roster is empty — can't
   // happen alongside a resolved `project`, but keep the type honest.
-  const neighbors = getProjectNeighbors(slug);
+  const neighbors = await getProjectNeighbors(slug);
 
   return (
     <>

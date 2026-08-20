@@ -20,12 +20,15 @@ export function PhotoPlaceholder({
   alt = "",
   sizes = "100vw",
   priority = false,
+  blurDataURL,
 }: {
   height: number;
   src?: string;
   alt?: string;
   sizes?: string;
   priority?: boolean;
+  /** Sanity LQIP, when the caller has one. Omitted for local assets. */
+  blurDataURL?: string | null;
 }) {
   const style = { height: `clamp(180px, 55vw, ${height}px)` };
 
@@ -38,6 +41,7 @@ export function PhotoPlaceholder({
           fill
           sizes={sizes}
           priority={priority}
+          {...(blurDataURL ? { placeholder: "blur" as const, blurDataURL } : {})}
           className="object-cover"
         />
       </div>

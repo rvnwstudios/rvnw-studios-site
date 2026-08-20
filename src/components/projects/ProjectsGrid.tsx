@@ -6,9 +6,9 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
 import { PhotoPlaceholder } from "../PhotoPlaceholder";
 import { CategoryPills } from "./CategoryPills";
-import { PROJECTS } from "@/lib/projects";
+import type { Project } from "@/lib/projects";
 
-export function ProjectsGrid() {
+export function ProjectsGrid({ projects }: { projects: Project[] }) {
   const reducedMotion = usePrefersReducedMotion();
 
   const container: Variants = {
@@ -35,7 +35,7 @@ export function ProjectsGrid() {
       variants={container}
       className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
     >
-      {PROJECTS.map((project) => (
+      {projects.map((project) => (
         <motion.div key={project.slug} variants={item}>
           <Link href={`/projects/${project.slug}`} className="block">
             <motion.div
@@ -48,7 +48,8 @@ export function ProjectsGrid() {
             >
               <PhotoPlaceholder
                 height={280}
-                src={project.heroImage}
+                src={project.heroImage.url}
+                blurDataURL={project.heroImage.lqip}
                 alt={project.title}
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               />
@@ -58,7 +59,7 @@ export function ProjectsGrid() {
                 {project.title}
               </h3>
               <div className="mt-2.5">
-                <CategoryPills category={project.metaCategory} />
+                <CategoryPills disciplines={project.disciplines} />
               </div>
             </div>
           </Link>

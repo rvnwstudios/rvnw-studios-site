@@ -5,10 +5,13 @@ import { VerticalsSection } from "@/components/VerticalsSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { OperatingStackSection } from "@/components/OperatingStackSection";
 import { WorkSection } from "@/components/WorkSection";
+import { getProjects } from "@/lib/projects";
 import { CtaSection } from "@/components/CtaSection";
 import { Footer } from "@/components/Footer";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
+
   return (
     <>
       <Nav />
@@ -18,7 +21,7 @@ export default function Home() {
         <VerticalsSection />
         <ProcessSection />
         <OperatingStackSection />
-        <WorkSection />
+        <WorkSection projects={projects} />
         <CtaSection />
       </main>
       <Footer />

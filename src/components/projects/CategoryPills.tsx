@@ -1,26 +1,26 @@
 import { Fragment } from "react";
 
 /**
- * Splits "Branding + Website + Packaging" into one pill per discipline,
- * with a mono "*" glyph between them, instead of one pill holding the
- * whole joined string. Every metaCategory in the data is authored with
- * " + " as the separator (see src/lib/projects.ts), so that's the split
- * point — not a delimiter the component invents on its own.
+ * One pill per discipline, with a mono "*" glyph between them.
+ *
+ * The list arrives already split from Sanity, where each discipline is its
+ * own entry. This component previously split a "+"-joined string itself —
+ * which meant the separator was a convention the render layer had to assume,
+ * and any value authored without it silently collapsed into a single pill
+ * holding several disciplines.
  */
-export function CategoryPills({ category }: { category: string }) {
-  const parts = category.split(" + ");
-
+export function CategoryPills({ disciplines }: { disciplines: string[] }) {
   return (
     <div className="flex flex-wrap items-center gap-1.5">
-      {parts.map((part, i) => (
-        <Fragment key={part}>
+      {disciplines.map((discipline, i) => (
+        <Fragment key={discipline}>
           {i > 0 && (
             <span aria-hidden="true" className="font-mono text-[10px] text-grid">
               *
             </span>
           )}
           <span className="shrink-0 rounded-full border border-[#2a2a28] px-3.5 py-1.5 font-mono text-[10px] tracking-[0.12em] whitespace-nowrap text-grid uppercase">
-            {part}
+            {discipline}
           </span>
         </Fragment>
       ))}

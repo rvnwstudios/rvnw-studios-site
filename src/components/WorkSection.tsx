@@ -5,14 +5,9 @@ import { motion, type Variants } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
 import { PhotoPlaceholder } from "./PhotoPlaceholder";
-import { PROJECTS, type Project } from "@/lib/projects";
+import type { Project } from "@/lib/projects";
 import { CtaButton } from "./motion/CtaButton";
 import { CategoryPills } from "./projects/CategoryPills";
-
-// Derived from array order rather than a hardcoded 3×2 row structure. The
-// previous version indexed a fixed six non-featured projects and threw at
-// module scope the moment the roster wasn't exactly seven.
-const [featured, ...rest] = PROJECTS;
 
 function WorkCard({
   project,
@@ -42,7 +37,8 @@ function WorkCard({
         >
           <PhotoPlaceholder
             height={height}
-            src={project.heroImage}
+            src={project.heroImage.url}
+            blurDataURL={project.heroImage.lqip}
             alt={project.title}
             sizes="(min-width: 640px) 50vw, 100vw"
           />
@@ -52,7 +48,7 @@ function WorkCard({
             {project.title}
           </h3>
           <div className="mt-2.5">
-            <CategoryPills category={project.metaCategory} />
+            <CategoryPills disciplines={project.disciplines} />
           </div>
         </div>
       </Link>
@@ -60,7 +56,12 @@ function WorkCard({
   );
 }
 
-export function WorkSection() {
+export function WorkSection({ projects }: { projects: Project[] }) {
+  // Derived from list order rather than a hardcoded 3×2 row structure. The
+  // previous version indexed a fixed six non-featured projects and threw the
+  // moment the roster wasn't exactly seven.
+  const [featured, ...rest] = projects;
+
   const reducedMotion = usePrefersReducedMotion();
 
   const container: Variants = {
@@ -105,7 +106,8 @@ export function WorkSection() {
             >
               <PhotoPlaceholder
                 height={480}
-                src={featured.heroImage}
+                src={featured.heroImage.url}
+                blurDataURL={featured.heroImage.lqip}
                 alt={featured.title}
                 sizes="100vw"
               />
@@ -115,7 +117,7 @@ export function WorkSection() {
                 {featured.title}
               </h3>
               <div className="mt-3">
-                <CategoryPills category={featured.metaCategory} />
+                <CategoryPills disciplines={featured.disciplines} />
               </div>
             </div>
           </Link>

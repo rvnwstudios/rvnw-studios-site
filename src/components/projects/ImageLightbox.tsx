@@ -5,10 +5,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { DURATION, EASE_OUT } from "@/lib/motion";
-import { IMAGE_DIMENSIONS } from "@/lib/imageDimensions";
+import type { ProjectImageSource } from "@/lib/projects";
 
 export interface LightboxImage {
-  src: string;
+  image: ProjectImageSource;
   alt: string;
 }
 
@@ -34,7 +34,6 @@ export function ImageLightbox({
 }) {
   const reducedMotion = usePrefersReducedMotion();
   const current = images[index];
-  const dimensions = IMAGE_DIMENSIONS[current.src];
   const hasMultiple = images.length > 1;
 
   useEffect(() => {
@@ -108,26 +107,16 @@ export function ImageLightbox({
         onClick={(e) => e.stopPropagation()}
         className="flex max-h-full max-w-full flex-col items-center"
       >
-        {dimensions ? (
-          <Image
-            key={current.src}
-            src={current.src}
-            alt={current.alt}
-            width={dimensions.width}
-            height={dimensions.height}
-            sizes="90vw"
-            priority
-            className="max-h-[78vh] w-auto max-w-[90vw] object-contain sm:max-h-[84vh]"
-          />
-        ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={current.src}
-            src={current.src}
-            alt={current.alt}
-            className="max-h-[78vh] w-auto max-w-[90vw] object-contain sm:max-h-[84vh]"
-          />
-        )}
+        <Image
+          key={current.image.url}
+          src={current.image.url}
+          alt={current.alt}
+          width={current.image.width}
+          height={current.image.height}
+          sizes="90vw"
+          priority
+          className="max-h-[78vh] w-auto max-w-[90vw] object-contain sm:max-h-[84vh]"
+        />
 
         {hasMultiple && (
           <span className="mt-5 font-mono text-xs tracking-[0.15em] text-grid uppercase">

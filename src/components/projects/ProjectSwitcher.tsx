@@ -37,7 +37,8 @@ function SwitchCard({
         >
           <PhotoPlaceholder
             height={220}
-            src={project.heroImage}
+            src={project.heroImage.url}
+            blurDataURL={project.heroImage.lqip}
             alt={project.title}
             sizes="(min-width: 640px) 50vw, 100vw"
           />
