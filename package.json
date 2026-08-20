@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
+    "@neondatabase/serverless": "^1.1.0",
     "@react-email/components": "^1.0.12",
     "@react-three/drei": "^10.7.8",
     "@react-three/fiber": "^9.7.0",

@@ -9,6 +9,7 @@ type FormState = {
   email: string;
   projectDetails: string;
   company: string;
+  phone: string;
   vertical: string;
   disciplines: string[];
   budget: string;
@@ -20,6 +21,7 @@ const initialState: FormState = {
   email: "",
   projectDetails: "",
   company: "",
+  phone: "",
   vertical: "",
   disciplines: [],
   budget: "",
@@ -169,6 +171,21 @@ export function InquiryForm() {
             {errors.email}
           </p>
         )}
+      </div>
+
+      <div>
+        <label htmlFor="phone" className={labelClass}>
+          Phone{optionalTag}
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          value={values.phone}
+          onChange={(e) => update("phone", e.target.value)}
+          className={inputClass}
+        />
       </div>
 
       <div>

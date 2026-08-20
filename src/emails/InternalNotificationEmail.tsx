@@ -34,6 +34,7 @@ export default function InternalNotificationEmail({
   email,
   projectDetails,
   company,
+  phone,
   vertical,
   disciplines = [],
   budget,
@@ -94,6 +95,7 @@ export default function InternalNotificationEmail({
             <Section style={{ backgroundColor: "#1D1D1B", border: "1px solid #2A2A2A", borderRadius: "12px", padding: "24px 28px" }}>
               <Field label="Name" value={name} />
               <Field label="Email" value={email} />
+              <Field label="Phone" value={phone ?? ""} />
               <Field label="Company" value={company ?? ""} />
               <Field label="Vertical" value={vertical ?? ""} />
               <Field label="Disciplines" value={disciplines.join(", ")} />

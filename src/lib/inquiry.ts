@@ -62,6 +62,13 @@ export const inquirySchema = z.object({
     .min(1, "Tell us what you're building.")
     .max(5000, "Keep it under 5000 characters."),
   company: z.string().trim().max(200).optional().or(z.literal("")),
+  phone: z
+    .string()
+    .trim()
+    .max(40)
+    .refine(noLineBreaks, "Remove line breaks.")
+    .optional()
+    .or(z.literal("")),
   vertical: z.enum(VERTICALS).optional().or(z.literal("")),
   disciplines: z.array(z.enum(DISCIPLINES)).optional().default([]),
   budget: z.enum(BUDGET_RANGES).optional().or(z.literal("")),

@@ -2,6 +2,7 @@ import { createElement } from "react";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { inquirySchema } from "@/lib/inquiry";
+import { sql } from "@/lib/db";
 import InternalNotificationEmail from "@/emails/InternalNotificationEmail";
 import ConfirmationEmail from "@/emails/ConfirmationEmail";
 
@@ -25,6 +26,17 @@ export async function POST(request: NextRequest) {
   }
 
   const data = parsed.data;
+
+  // Best-effort: a DB hiccup shouldn't block a lead from reaching email,
+  // which is why this isn't awaited into the error response below.
+  try {
+    await sql`
+      insert into inquiries (name, email, phone, company, project_details, vertical, disciplines, budget, timeline)
+      values (${data.name}, ${data.email}, ${data.phone || null}, ${data.company || null}, ${data.projectDetails}, ${data.vertical || null}, ${data.disciplines}, ${data.budget || null}, ${data.timeline || null})
+    `;
+  } catch (err) {
+    console.error("Failed to log inquiry to database", err);
+  }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
