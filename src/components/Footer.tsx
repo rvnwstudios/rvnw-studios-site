@@ -1,17 +1,13 @@
 import Link from "next/link";
 import { RMark } from "./RMark";
+import { getProjects } from "@/lib/projects";
 
-const workLinks = ["Thread House Ink", "Cooper Concrete", "Energy Exchange", "Hitters Quarters"];
-const serviceLinks = [
-  { label: "Strategy", href: "#services" },
-  { label: "Creative & Design", href: "#services" },
-  { label: "Dev/Engineering", href: "#services" },
-  { label: "Advertising", href: "#services" },
-  { label: "Digital Experience", href: "#services" },
-  { label: "Growth & Retention", href: "#services" },
-];
+const serviceLinks = ["Strategy", "Creative & Design", "Dev/Engineering", "Advertising", "Digital Experience", "Growth & Retention"];
 
-export function Footer({ showAvailableBadge = true }: { showAvailableBadge?: boolean }) {
+export async function Footer({ showAvailableBadge = true }: { showAvailableBadge?: boolean }) {
+  const projects = await getProjects();
+  const workLinks = projects.slice(0, 4);
+
   return (
     <footer className="border-t border-[#1c1c1c] bg-ink px-6 pt-16 pb-10 sm:px-8 md:px-12 md:pt-20 lg:px-20">
       <div className="mb-12 grid grid-cols-1 items-start gap-10 sm:grid-cols-[2fr_1fr_1fr_1fr] sm:gap-20 md:mb-20">
@@ -32,10 +28,14 @@ export function Footer({ showAvailableBadge = true }: { showAvailableBadge?: boo
             Work
           </span>
           <div className="flex flex-col gap-3">
-            {workLinks.map((label) => (
-              <a key={label} href="#work" className="footer-link font-body text-[15px]">
-                {label}
-              </a>
+            {workLinks.map((project) => (
+              <Link
+                key={project._id}
+                href={`/projects/${project.slug}`}
+                className="footer-link font-body text-[15px]"
+              >
+                {project.title}
+              </Link>
             ))}
           </div>
         </div>
@@ -45,10 +45,10 @@ export function Footer({ showAvailableBadge = true }: { showAvailableBadge?: boo
             Services
           </span>
           <div className="flex flex-col gap-3">
-            {serviceLinks.map((s) => (
-              <a key={s.label} href={s.href} className="footer-link font-body text-[15px]">
-                {s.label}
-              </a>
+            {serviceLinks.map((label) => (
+              <Link key={label} href="/#services" className="footer-link font-body text-[15px]">
+                {label}
+              </Link>
             ))}
           </div>
         </div>
