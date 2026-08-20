@@ -75,10 +75,10 @@ export function HeroSection() {
           Digital Studio
         </span>
         <span className="hidden font-mono text-[11px] tracking-[0.2em] text-grid uppercase sm:block">
-          AI-Native Operations
+          Brand & Product
         </span>
         <span className="hidden font-mono text-[11px] tracking-[0.2em] text-grid uppercase md:block">
-          Human-Led Execution
+          Built By Hand
         </span>
         <span className="font-mono text-[10px] tracking-[0.15em] text-grid uppercase sm:text-[11px] sm:tracking-[0.2em]">
           rvnwstudios.com
@@ -117,7 +117,7 @@ export function HeroSection() {
           variants={supporting}
         >
           <p className="font-body text-lg leading-relaxed text-grid text-pretty sm:text-xl">
-            Priced to what the work actually needs — not a tier.
+            No tiers, no templates. We scope the work in front of us and price it the same way.
           </p>
           <div className="inline-flex items-center gap-2.5 rounded-full border border-[#2a2a28] px-5 py-2.5">
             <span className="available-dot" />

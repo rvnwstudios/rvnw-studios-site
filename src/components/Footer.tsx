@@ -19,7 +19,7 @@ export async function Footer({ showAvailableBadge = true }: { showAvailableBadge
             </span>
           </Link>
           <p className="max-w-[260px] font-body text-[15px] leading-relaxed text-grid">
-            AI-native operations. Human-led execution.
+            Brand and product, built by hand.
           </p>
         </div>
 

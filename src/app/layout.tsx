@@ -22,9 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RVNW Studios — AI-native Operations. Human-led Execution.",
+  title: "RVNW Studios — Brand, Web, and Product for Businesses Ready to Move",
   description:
-    "AI-native operations. Human-led execution. Priced to what the work actually needs — not a tier.",
+    "A digital studio building brand identity, websites, and product experiences. Scoped to the work, not a tier.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
