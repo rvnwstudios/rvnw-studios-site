@@ -16,8 +16,8 @@ const disciplines = [
 ];
 
 const HEADLINE_LINES = [
-  ["Built", "to", "Move."],
-  ["Priced", "to", "Match."],
+  ["Brand,", "Web,", "&", "Product."],
+  ["For", "Ambitious", "Brands."],
 ];
 
 export function HeroSection() {
