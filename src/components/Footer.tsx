@@ -95,13 +95,27 @@ export async function Footer({ showAvailableBadge = true }: { showAvailableBadge
         </div>
       )}
 
-      <div className="flex flex-col gap-2 border-t border-[#1c1c1c] pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
+      <div className="flex flex-col gap-4 border-t border-[#1c1c1c] pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
         <span className="font-mono text-[11px] tracking-[0.12em] text-grid uppercase">
           © 2026 RVNW Studios
         </span>
-        <span className="font-mono text-[11px] tracking-[0.12em] text-grid uppercase">
-          All rights reserved
-        </span>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
+          <Link
+            href="/privacy-policy"
+            className="footer-link font-mono text-[11px] tracking-[0.12em] uppercase"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="/terms-of-service"
+            className="footer-link font-mono text-[11px] tracking-[0.12em] uppercase"
+          >
+            Terms of Service
+          </Link>
+          <span className="font-mono text-[11px] tracking-[0.12em] text-grid uppercase">
+            All rights reserved
+          </span>
+        </div>
       </div>
     </footer>
   );
